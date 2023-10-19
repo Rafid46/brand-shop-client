@@ -7,6 +7,7 @@ import AddProduct from "./Components/AddProduct";
 import BrandDetails from "./Components/Extra page/BrandDetails";
 import UpdateProduct from "./Components/Homepage/UpdateRoute/UpdateProduct";
 import Details from "./Components/Details/Details";
+import MyCart from "./Components/MyCart/MyCart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
     path: "/details/:id",
     element: <Details></Details>,
     loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+  },
+  {
+    path: "/myCart",
+    element: <MyCart></MyCart>,
+    loader: () => fetch("http://localhost:5000/myCart"),
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -38,7 +38,7 @@ const Details = () => {
             <p>{data.description}</p>
             <div className="card-actions justify-end">
               <button
-                onClick={() => handleAddToCart()}
+                onClick={handleAddToCart}
                 className="btn bg-orange-500 rounded-none"
               >
                 Add to cart

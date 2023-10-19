@@ -20,7 +20,7 @@ const NavBar = () => {
             </NavLink>
             <NavLink
               className="text-3xl font-semibold text-blue-200 mr-20"
-              to="/"
+              to="/myCart"
             >
               MY CART
             </NavLink>

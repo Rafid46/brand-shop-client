@@ -16,27 +16,36 @@ const UpdateProduct = () => {
     const rating = form.rating.value;
     const description = form.description.value;
     const price = form.price.value;
-    const products = { name, description, price, type, rating, brand, image };
-    console.log(products);
-    // fetch(`http://localhost:5000/brand/${_id}`, {
-    //   method: "Put",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(products),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     // if (data.insertedId) {
-    //     //   swal("Product updated", "", "success");
-    //     // }
-    //     // form.reset();
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    const updateProducts = {
+      name,
+      description,
+      price,
+      type,
+      rating,
+      brand,
+      image,
+    };
+    console.log(updateProducts);
+    fetch(`http://localhost:5000/brand/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateProducts),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          swal("Product updated", "", "success");
+        }
+        form.reset();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
+  const { image, description, rating, price, brand, type, details } = loader;
   return (
     <div>
       <NavBar></NavBar>
@@ -54,6 +63,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={name}
                   name="name"
                   type="text"
                   placeholder="name"
@@ -67,6 +77,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={image}
                   name="image"
                   type="text"
                   placeholder="Image"
@@ -82,6 +93,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={brand}
                   name="brand"
                   type="text"
                   placeholder="Brand Name"
@@ -95,6 +107,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={type}
                   name="type"
                   type="text"
                   placeholder="type"
@@ -108,6 +121,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={price}
                   name="price"
                   type="text"
                   placeholder="price"
@@ -123,6 +137,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={description}
                   name="description"
                   type="text"
                   placeholder="short description"
@@ -136,6 +151,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={rating}
                   name="rating"
                   type="text"
                   placeholder="Rate 1 out of 5"
@@ -151,6 +167,7 @@ const UpdateProduct = () => {
               </label>
               <label className="">
                 <input
+                  defaultValue={details}
                   name="details"
                   type="text"
                   placeholder="details"
