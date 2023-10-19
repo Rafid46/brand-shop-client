@@ -4,8 +4,8 @@ import NavBar from "../../NavBar";
 import { useLoaderData } from "react-router-dom";
 
 const UpdateProduct = () => {
-  //   const loader = useLoaderData();
-  //   const { _id, name } = loader;
+  const loader = useLoaderData();
+  const { _id, name } = loader;
   const handleUpdateProduct = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -41,13 +41,11 @@ const UpdateProduct = () => {
     <div>
       <NavBar></NavBar>
       {/* // main div */}
-      <h1>{name}</h1>
-      <p>update</p>
       <section className="max-w-screen-sm mx-auto mb-10">
         <h1 className="text-4xl text-center my-10 font-semibold">
           UPDATE PRODUCTS
         </h1>
-        <h1>{name}</h1>
+        <h1 className="text-3xl font-semibold">{name}</h1>
         <form onSubmit={handleUpdateProduct}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-5 ml-32 lg:ml-0">
             <div>
