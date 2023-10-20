@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useLoaderData } from "react-router-dom";
 import NavBar from "../NavBar";
 import ViewCart from "./ViewCart";

@@ -1,29 +1,34 @@
+/* eslint-disable no-unused-vars */
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
 const ViewCart = ({ product }) => {
   const handleDelete = (_id) => {
     console.log(_id);
-    fetch(`http://localhost:5000/product/${_id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // if (data.deletedCount > 0) {
-        //   swal("Poof! Your imaginary file has been deleted!", {
-        //     icon: "success",
-        //   });
-        // }
-        console.log("deleted");
-      });
-    //   } else {
-    //     swal("Your imaginary file is safe!");
-    //   }
-    // });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/product/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
   };
   console.log(product);
   const { _id, name, details, image, description, price, brand, rating } =
@@ -33,7 +38,7 @@ const ViewCart = ({ product }) => {
       <div className="">
         <div className="card card-side w-96 bg-base-100 shadow-xl">
           <figure>
-            <img className="w-[300px] h-[300px]" src={image} />
+            <img className="" src={image} />
           </figure>
           <div className="card-body">
             <h2 className="card-title text-2xl font-semibold">{name}</h2>

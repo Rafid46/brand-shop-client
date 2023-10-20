@@ -6,18 +6,21 @@ import swal from "sweetalert";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Details = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const data = useLoaderData();
+  const { name, brand, price, details, description, rating, image } = data;
   console.log(data);
   const handleAddToCart = () => {
-    const product = { data };
+    const mainCart = { ...data };
+    delete mainCart._id;
+    // const product = { data };
     fetch("http://localhost:5000/product", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
 
-      body: JSON.stringify(product),
+      body: JSON.stringify(mainCart),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -34,11 +37,11 @@ const Details = () => {
       <div className="flex justify-center">
         <div className="card w-96 glass">
           <figure>
-            <img src={data.image} alt="car!" />
+            <img src={image} alt="car!" />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">{data.name}</h2>
-            <p>{data.description}</p>
+            <h2 className="card-title">{name}</h2>
+            <p>{description}</p>
             <div className="card-actions justify-end">
               <button
                 onClick={handleAddToCart}
