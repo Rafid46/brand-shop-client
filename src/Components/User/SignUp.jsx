@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import swal from "sweetalert";
+import NavBar from "../NavBar";
 // import { AuthContext } from "../../Providers/AuthProviders";
 // import { AuthContext } from "../../Providers/AuthProviders";
 
@@ -19,6 +20,7 @@ const SignUp = () => {
     const photo = form.photo.value;
     const password = form.password.value;
     console.log(form, name, email, photo, password);
+
     setRegisterError("");
     if (password.length < 6) {
       setRegisterError("password should be at least 6 characters or longer");
@@ -43,9 +45,10 @@ const SignUp = () => {
   };
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <NavBar></NavBar>
+      <div className="hero  bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 w-full">
             <form onSubmit={handleSignUp} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -91,19 +94,14 @@ const SignUp = () => {
                   className="input input-bordered"
                   required
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
-            <p className="text-center text-gray-200">
+            <p className="text-center text-black">
               Already have an account?., Please
-              <Link className="text-[#00FFE1]" to="/login">
+              <Link className=" text-xl ml-5 text-green-400" to="/login">
                 Login
               </Link>
             </p>

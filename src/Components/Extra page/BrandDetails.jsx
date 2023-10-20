@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
-import { Carousel } from "@material-tailwind/react";
+import { Carousel, Navbar } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import image1 from "../../assets/gsmarena_020.jpg";
@@ -29,6 +29,7 @@ const BrandDetails = () => {
   }, [brand]);
   return (
     <div>
+      <Navbar></Navbar>
       <div className="carousel w-1/2 mr-50 lg:ml-96 mx-auto mt-10">
         <div id="slide1" className="carousel-item relative w-full">
           <img src={image1} className="w-full" />

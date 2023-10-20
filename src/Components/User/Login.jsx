@@ -40,9 +40,9 @@ const Login = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero  bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 w-full">
             <form onSubmit={handleSignIn} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -72,16 +72,16 @@ const Login = () => {
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
-            <p className="text-center text-gray-200">
+            <p className="text-center text-black">
               Do not have an account, Please
-              <Link className="text-[#00FFE1]" to="/register">
+              <Link className="text-blue-500" to="/register">
                 Register
               </Link>
             </p>
             <div className="flex items-center justify-center">
               <button
                 onClick={handleGoogleSignIn}
-                className="btn border-none bg-[#00FFE1] rounded-none items-center"
+                className="btn border-none bg-[#00FFE1] rounded-none mt-5 items-center"
               >
                 <FaGoogle className="text-2xl"></FaGoogle>
                 Google
