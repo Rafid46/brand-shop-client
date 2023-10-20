@@ -45,7 +45,18 @@ function Home() {
         </div>
       </section>
       <hr className="border-1 max-w-screen-lg mx-auto border-black mt-10 mb-10" />
-
+      <section>
+        <div className="flex justify-between">
+          <h1 className="text-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text leading-relaxed">
+            Technology plays a pivotal role in shaping our world, affecting how
+            we live, work, and interact. It has led to significant advancements
+            in various industries, improved efficiency, and transformed the way
+            we communicate and access information. Additionally, technology
+            continues to evolve rapidly, driving innovation and opening up new
+            possibilities for the future.
+          </h1>
+        </div>
+      </section>
       <hr className="border-1 max-w-screen-lg mx-auto border-black mt-10 mb-10" />
       <footer>
         <footer className="footer p-10 bg-neutral text-neutral-content">
