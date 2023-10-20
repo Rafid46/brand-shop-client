@@ -3,12 +3,41 @@ import { useLoaderData } from "react-router-dom";
 import NavBar from "../NavBar";
 import ViewCart from "./ViewCart";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
   const myCartProduct = useLoaderData();
-  const [user, setUser] = useState();
+  console.log(myCartProduct);
+  const [products, setProducts] = useState(myCartProduct);
   //   const { name, price, rating } = myCartProduct;
   //   console.log(myCartProduct);
+  const handleDelete = (_id) => {
+    console.log(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/product/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setProducts(products.filter((item) => item._id !== _id));
+          });
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
   return (
     <div>
       <NavBar></NavBar>
@@ -17,8 +46,12 @@ const MyCart = () => {
           My Cart
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          {myCartProduct.map((product) => (
-            <ViewCart key={myCartProduct._id} product={product}></ViewCart>
+          {products.map((product) => (
+            <ViewCart
+              key={product._id}
+              product={product}
+              handleDelete={handleDelete}
+            ></ViewCart>
           ))}
         </div>
       </section>
