@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import NavBar from "../NavBar";
 import swal from "sweetalert";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const Details = () => {
+  const { user } = useContext(AuthContext);
   const data = useLoaderData();
   console.log(data);
   const handleAddToCart = () => {

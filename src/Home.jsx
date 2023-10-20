@@ -5,6 +5,10 @@ import Banner from "./Components/Homepage/Banner";
 import BrandSection from "./Components/Homepage/BrandSection";
 import banner2 from "./assets//12983062_5109267.jpg";
 import banner3 from "./assets/banner.jpg";
+import banner4 from "./assets/2103881_P6YUM70.jpg";
+import banner5 from "./assets/isolated-phone-grey-background.jpg";
+import banner6 from "./assets/modern-smartphone-with-simple-environment.jpg";
+import banner7 from "./assets/12983062_5109267.jpg";
 function Home() {
   const brands = useLoaderData();
   return (
@@ -26,6 +30,23 @@ function Home() {
           <BrandSection key={brandss._id} brandss={brandss}></BrandSection>
         ))}
       </div>
+      {/* extra section */}
+      <section>
+        <div className="flex justify-between w-72 h-96">
+          <div className="carousel-item">
+            <img className="w-[500px]" src={banner4} />
+          </div>
+          <div className="carousel-item">
+            <img className="w-[540px]" src={banner5} />
+          </div>
+          <div className="carousel-item">
+            <img className="w-[540px]" src={banner6} />
+          </div>
+        </div>
+      </section>
+      <hr className="border-1 max-w-screen-lg mx-auto border-black mt-10 mb-10" />
+
+      <hr className="border-1 max-w-screen-lg mx-auto border-black mt-10 mb-10" />
       <footer>
         <footer className="footer p-10 bg-neutral text-neutral-content">
           <nav>
