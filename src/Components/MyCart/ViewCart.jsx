@@ -1,8 +1,41 @@
+import swal from "sweetalert";
+
 /* eslint-disable react/prop-types */
 const ViewCart = ({ product }) => {
+  const handleDelete = (_id) => {
+    console.log(_id);
+    // swal({
+    //   title: "Are you sure?",
+    //   text: "Once deleted, you will not be able to recover this imaginary file!",
+    //   icon: "warning",
+    //   buttons: true,
+    //   dangerMode: true,
+    // }).then((willDelete) => {
+    //   if (willDelete) {
+    fetch(`http://localhost:5000/product/${_id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // if (data.deletedCount > 0) {
+        //   swal("Poof! Your imaginary file has been deleted!", {
+        //     icon: "success",
+        //   });
+        // }
+        console.log("deleted");
+      });
+    //   } else {
+    //     swal("Your imaginary file is safe!");
+    //   }
+    // });
+  };
   console.log(product);
-  const { name, details, image, description, price, brand, rating } =
-    product.data;
+  const { _id, name, details, image, description, price, brand, rating } =
+    product;
   return (
     <div>
       <div className="">
@@ -15,8 +48,14 @@ const ViewCart = ({ product }) => {
             <p>{rating}</p>
             <p>{description}</p>
             <div className="card-actions justify-end">
-              <button className="btn  text-2xl font-semibold bg-green-400 ">
+              <button className="btn  text-2xl font-semibold bg-blue-200 ">
                 {price}
+              </button>
+              <button
+                onClick={() => handleDelete(_id)}
+                className="btn font-semibold bg-red-500 "
+              >
+                Delete
               </button>
             </div>
           </div>

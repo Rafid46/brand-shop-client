@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 
 const UpdateProduct = () => {
   const loader = useLoaderData();
-  const { _id, name } = loader;
+  const { name } = loader;
   const handleUpdateProduct = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,7 +26,7 @@ const UpdateProduct = () => {
       image,
     };
     console.log(updateProducts);
-    fetch(`http://localhost:5000/brand/${_id}`, {
+    fetch(`http://localhost:5000/updatedProduct/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -39,13 +39,13 @@ const UpdateProduct = () => {
         if (data.modifiedCount > 0) {
           swal("Product updated", "", "success");
         }
-        form.reset();
       })
       .catch((error) => {
         console.error(error);
       });
   };
-  const { image, description, rating, price, brand, type, details } = loader;
+  const { _id, image, description, rating, price, brand, type, details } =
+    loader;
   return (
     <div>
       <NavBar></NavBar>

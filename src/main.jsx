@@ -8,6 +8,10 @@ import BrandDetails from "./Components/Extra page/BrandDetails";
 import UpdateProduct from "./Components/Homepage/UpdateRoute/UpdateProduct";
 import Details from "./Components/Details/Details";
 import MyCart from "./Components/MyCart/MyCart";
+import Login from "./Components/User/Login";
+import SignUp from "./Components/User/SignUp";
+import AuthProviders from "./Providers/AuthProviders";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,7 +21,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/addProduct",
-    element: <AddProduct></AddProduct>,
+    element: (
+      <PrivateRoute>
+        <AddProduct></AddProduct>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/brandDetails/:brand",
@@ -25,23 +33,45 @@ const router = createBrowserRouter([
   },
   {
     path: "/updateProduct/:id",
-    element: <UpdateProduct></UpdateProduct>,
+    element: (
+      <PrivateRoute>
+        <UpdateProduct></UpdateProduct>
+      </PrivateRoute>
+    ),
     loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
     // loader: () => fetch("http://localhost:5000/added"),
   },
   {
     path: "/details/:id",
-    element: <Details></Details>,
+    element: (
+      <PrivateRoute>
+        <Details></Details>
+      </PrivateRoute>
+    ),
     loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
   },
   {
     path: "/myCart",
-    element: <MyCart></MyCart>,
+    element: (
+      <PrivateRoute>
+        <MyCart></MyCart>
+      </PrivateRoute>
+    ),
     loader: () => fetch("http://localhost:5000/myCart"),
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <SignUp></SignUp>,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders>
+      <RouterProvider router={router} />
+    </AuthProviders>
   </React.StrictMode>
 );

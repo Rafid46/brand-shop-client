@@ -6,6 +6,7 @@ import swal from "sweetalert";
 
 const Details = () => {
   const data = useLoaderData();
+  console.log(data);
   const handleAddToCart = () => {
     const product = { data };
     fetch("http://localhost:5000/product", {

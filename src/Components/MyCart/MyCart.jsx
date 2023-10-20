@@ -1,9 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import NavBar from "../NavBar";
 import ViewCart from "./ViewCart";
+import { useState } from "react";
 
 const MyCart = () => {
   const myCartProduct = useLoaderData();
+  const [user, setUser] = useState();
   //   const { name, price, rating } = myCartProduct;
   //   console.log(myCartProduct);
   return (

@@ -1,6 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/1187936_OSO1XY1.png";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProviders";
+import swal from "sweetalert";
+import { CgProfile } from "react-icons/Cg";
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => {
+        console.log(result.user);
+        return swal("", "Logout successfully", "success");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const links = (
     <div>
       <div className="mt-10 mb-10">
@@ -26,7 +41,7 @@ const NavBar = () => {
             </NavLink>
             <NavLink
               className="text-3xl font-semibold text-blue-200 mr-20"
-              to="/"
+              to="/login"
             >
               LOGIN
             </NavLink>
@@ -72,12 +87,12 @@ const NavBar = () => {
           <ul className="menu-horizontal  px-1">{links}</ul>
         </div>
         <div className="navbar">
-          {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-8 mr-2 rounded-full">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            {/* <div className="w-8 mr-2 rounded-full">
               <img src="" />
-            </div>
-          </label> */}
-          {/* {user ? (
+            </div> */}
+          </label>
+          {user ? (
             <div>
               <img className="rounded-full w-[50px] mr-2" src={user.photoURL} />
               <p className="text-2xl font-thin text-white mr-2">
@@ -99,7 +114,7 @@ const NavBar = () => {
                 </button>
               </Link>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>
