@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         DM: "'DM Sans', sans-serif",
+        Com: "'Comfortaa', sans-serif",
       },
     },
   },

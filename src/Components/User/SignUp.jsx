@@ -35,7 +35,7 @@ const SignUp = () => {
     } else {
       swal("Good job!", "account created succesfully", "success");
     }
-
+    // update user
     createUser(email, password).then((result) => {
       updateUser(name, photo).then(() => {
         console.log(result);

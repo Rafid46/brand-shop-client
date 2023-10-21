@@ -100,6 +100,7 @@ const NavBar = () => {
           </div>
           <a className="btn btn-ghost normal-case text-xl">
             <img className="w-[50px] h-[50px]" src={logo} alt="" />
+            <p className="text-4xl font-bol text-[#00FFE1] font-Com">Spark</p>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
