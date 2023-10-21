@@ -26,13 +26,17 @@ const UpdateProduct = () => {
       image,
     };
     console.log(updateProducts);
-    fetch(`http://localhost:5000/updatedProduct/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateProducts),
-    })
+    fetch(
+      `https://brand-shop-server-sandy-five.vercel.app
+/updatedProduct/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateProducts),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

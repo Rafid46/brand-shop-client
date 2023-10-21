@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import swal from "sweetalert";
 import NavBar from "../NavBar";
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { signInUser } = useContext(AuthContext);
   const [mainUser, setMainUser] = useState(null);
   const auth = getAuth();
@@ -16,6 +18,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(result.user);
+        navigate(location.state ? location?.state : "/");
         swal("Hello there", "Login successful", "success");
         setMainUser(user);
       })
@@ -32,15 +35,19 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result);
+        navigate(location.state ? location?.state : "/");
+        return swal("Hello there", "Login successful", "success");
       })
       .catch((error) => {
         console.log(error);
+        return swal("wrong password");
       });
   };
   return (
     <div>
       <NavBar></NavBar>
-      <div className="hero  bg-base-200">
+      <p className="text-4xl text-blue-500 font-bold text-center">L o g i n</p>
+      <div className="hero">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card flex-shrink-0 w-full">
             <form onSubmit={handleSignIn} className="card-body">
@@ -69,12 +76,14 @@ const Login = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn bg-blue-500 rounded-none text-white">
+                  Login
+                </button>
               </div>
             </form>
-            <p className="text-center text-black">
+            <p className="text-center text-gray-500">
               Do not have an account, Please
-              <Link className="text-blue-500" to="/register">
+              <Link className="text-blue-500 mr-5" to="/register">
                 Register
               </Link>
             </p>

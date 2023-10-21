@@ -15,7 +15,7 @@ const AddProduct = () => {
     const price = form.price.value;
     const products = { name, description, price, type, rating, brand, image };
     console.log(products);
-    fetch("http://localhost:5000/added", {
+    fetch("https://brand-shop-server-sandy-five.vercel.app/added", {
       method: "POST",
       headers: {
         "content-type": "application/json",

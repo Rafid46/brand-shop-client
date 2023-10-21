@@ -4,16 +4,17 @@
 import { Carousel, Navbar } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import image1 from "../../assets/gsmarena_020.jpg";
-import image2 from "../../assets/isolated-phone-grey-background.jpg";
-import image3 from "../../assets/modern-smartphone-with-simple-environment.jpg";
+import image1 from "../../assets/10122379_18001771.jpg";
+import image2 from "../../assets/electronic-device-balancing-concept.jpg";
+import image3 from "../../assets/electronic-devices-balancing-concept.jpg";
 const BrandDetails = () => {
   const [data, setData] = useState([]);
   //   const { name, price, image } = data;
   const { brand } = useParams();
   const { _id } = data;
   useEffect(() => {
-    fetch(`http://localhost:5000/added/${brand}`)
+    fetch(`https://brand-shop-server-sandy-five.vercel.app
+/added/${brand}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -30,7 +31,7 @@ const BrandDetails = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="carousel w-1/2 mr-50 lg:ml-96 mx-auto mt-10">
+      <div className="carousel   mx-auto mt-10">
         <div id="slide1" className="carousel-item relative w-full">
           <img src={image1} className="w-full" />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -83,9 +84,9 @@ const BrandDetails = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {data?.map((brandDetail) => (
             <div className="">
-              <div className="card w-80 glass max-w-screen-3xl mx-auto mt-10">
+              <div className="card w-auto  glass max-w-screen-3xl mx-auto mt-10">
                 <figure>
-                  <img src={brandDetail.image} />
+                  <img className="h-[350px]" src={brandDetail.image} />
                 </figure>
                 <div className="flex items-center justify-between mx-5">
                   <div className="card-body">

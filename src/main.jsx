@@ -16,7 +16,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-    // loader: () => fetch("http://localhost:5000/added"),
     loader: () => fetch("/Brands.json"),
   },
   {
@@ -38,8 +37,9 @@ const router = createBrowserRouter([
         <UpdateProduct></UpdateProduct>
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
-    // loader: () => fetch("http://localhost:5000/added"),
+    loader: ({ params }) =>
+      fetch(`https://brand-shop-server-sandy-five.vercel.app
+/product/${params.id}`),
   },
   {
     path: "/details/:id",
@@ -48,7 +48,9 @@ const router = createBrowserRouter([
         <Details></Details>
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+    loader: ({ params }) =>
+      fetch(`https://brand-shop-server-sandy-five.vercel.app
+/product/${params.id}`),
   },
   {
     path: "/myCart",
@@ -57,7 +59,8 @@ const router = createBrowserRouter([
         <MyCart></MyCart>
       </PrivateRoute>
     ),
-    loader: () => fetch("http://localhost:5000/myCart"),
+    loader: () =>
+      fetch("https://brand-shop-server-sandy-five.vercel.app/myCart"),
   },
   {
     path: "/login",

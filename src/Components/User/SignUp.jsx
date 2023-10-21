@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 // import { useContext } from "react";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 import swal from "sweetalert";
 import NavBar from "../NavBar";
@@ -10,7 +11,7 @@ import NavBar from "../NavBar";
 const SignUp = () => {
   //   const [success, setSuccess] = useState("");
   const [registerError, setRegisterError] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
   //   const { createUser } = useContext(AuthContext);
   const handleSignUp = (e) => {
     e.preventDefault(e);
@@ -35,18 +36,20 @@ const SignUp = () => {
       swal("Good job!", "account created succesfully", "success");
     }
 
-    createUser(email, password)
-      .then((result) => {
+    createUser(email, password).then((result) => {
+      updateUser(name, photo).then(() => {
         console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
+        Navigate("/");
       });
+    });
   };
   return (
     <div>
       <NavBar></NavBar>
-      <div className="hero  bg-base-200">
+      <p className="text-4xl font-bold text-green-500 text-center">
+        R e g i s t e r
+      </p>
+      <div className="hero">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card flex-shrink-0 w-full">
             <form onSubmit={handleSignUp} className="card-body">
@@ -96,12 +99,14 @@ const SignUp = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="btn bg-green-400 text-white rounded-none">
+                  Register
+                </button>
               </div>
             </form>
-            <p className="text-center text-black">
-              Already have an account?., Please
-              <Link className=" text-xl ml-5 text-green-400" to="/login">
+            <p className="text-center text-gray-400">
+              Already have an account?. Please
+              <Link className="text-xl ml-2 text-green-400" to="/login">
                 Login
               </Link>
             </p>

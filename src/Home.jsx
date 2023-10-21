@@ -1,6 +1,5 @@
 import { useLoaderData } from "react-router-dom";
 import NavBar from "./Components/NavBar";
-import banner from "../src/assets/banner.jpg";
 import Banner from "./Components/Homepage/Banner";
 import BrandSection from "./Components/Homepage/BrandSection";
 import banner2 from "./assets//12983062_5109267.jpg";
@@ -8,7 +7,6 @@ import banner3 from "./assets/banner.jpg";
 import banner4 from "./assets/2103881_P6YUM70.jpg";
 import banner5 from "./assets/isolated-phone-grey-background.jpg";
 import banner6 from "./assets/modern-smartphone-with-simple-environment.jpg";
-import banner7 from "./assets/12983062_5109267.jpg";
 function Home() {
   const brands = useLoaderData();
   return (
@@ -18,7 +16,9 @@ function Home() {
         className="bg-cover bg-fixed bg-center h-[600px]"
       >
         <div className="">
-          <NavBar></NavBar>
+          <div>
+            <NavBar></NavBar>
+          </div>
           <Banner></Banner>
         </div>
       </div>
@@ -31,8 +31,8 @@ function Home() {
         ))}
       </div>
       {/* extra section */}
-      <section>
-        <div className="flex justify-between w-72 h-96">
+      <section className="mb-30">
+        <div className="flex flex-col lg:flex-row justify-between w-50 h-96 mx-auto">
           <div className="carousel-item">
             <img className="w-[500px]" src={banner4} />
           </div>
@@ -44,10 +44,11 @@ function Home() {
           </div>
         </div>
       </section>
-      <hr className="border-1 max-w-screen-lg mx-auto border-black mt-10 mb-10" />
-      <section>
-        <div className="flex justify-between">
-          <h1 className="text-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text leading-relaxed">
+      <hr className="border-1 max-w-screen-lg mx-auto border-black lg:mt-10 lg:mb-10" />
+      {/* extra section 2 */}
+      <section className="">
+        <div className="flex flex-wrap justify-between mt-50">
+          <h1 className="text-3xl mt-30 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text leading-relaxed">
             Technology plays a pivotal role in shaping our world, affecting how
             we live, work, and interact. It has led to significant advancements
             in various industries, improved efficiency, and transformed the way

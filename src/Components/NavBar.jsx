@@ -43,20 +43,24 @@ const NavBar = () => {
             >
               HOME
             </NavLink>
+            {user && (
+              <>
+                <NavLink
+                  className="text-3xl font-semibold text-blue-200 mr-20"
+                  to="/addProduct"
+                >
+                  ADD PRODUCT
+                </NavLink>
+                <NavLink
+                  className="text-3xl font-semibold text-blue-200 mr-20"
+                  to="/myCart"
+                >
+                  MY CART
+                </NavLink>
+              </>
+            )}
             <NavLink
-              className="text-3xl font-semibold text-blue-200 mr-20"
-              to="/addProduct"
-            >
-              ADD PRODUCT
-            </NavLink>
-            <NavLink
-              className="text-3xl font-semibold text-blue-200 mr-20"
-              to="/myCart"
-            >
-              MY CART
-            </NavLink>
-            <NavLink
-              className="text-3xl font-semibold text-blue-200 mr-20"
+              className="text-3xl font-semibold text-blue-300 mr-0 lg:mr-20"
               to="/login"
             >
               LOGIN
@@ -69,9 +73,9 @@ const NavBar = () => {
   return (
     <div>
       <div className="navbar mb-10">
-        <div className="navbar">
+        <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden mr-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-white"
@@ -93,24 +97,25 @@ const NavBar = () => {
             >
               {links}
             </ul>
-            <a className="btn btn-ghost normal-case text-xl">
-              <img className="w-10 h-10" src={logo} alt="" />
-            </a>
           </div>
-          <a className="btn btn-ghost normal-case text-xl"></a>
+          <a className="btn btn-ghost normal-case text-xl">
+            <img className="w-[50px] h-[50px]" src={logo} alt="" />
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu-horizontal  px-1">{links}</ul>
         </div>
         <div className="navbar">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            {/* <div className="w-8 mr-2 rounded-full">
-              <img src="" />
-            </div> */}
-          </label>
+          <label
+            tabIndex={0}
+            className="btn btn-ghost btn-circle avatar"
+          ></label>
           {user ? (
             <div>
-              <img className="rounded-full w-[50px] mr-2" src={user.photoURL} />
+              <img
+                className="rounded-full w-[40px] h-[40px] mr-2"
+                src={user.photoURL}
+              />
               <p className="text-2xl font-thin text-white mr-2">
                 {user.displayName}
               </p>
@@ -123,7 +128,7 @@ const NavBar = () => {
             </div>
           ) : (
             <div>
-              <CgProfile className="text-white text-5xl font-normal mr-5 items-center"></CgProfile>
+              <CgProfile className="text-gray-400 text-5xl font-normal mr-1 lg:mr-5 items-center"></CgProfile>
               <Link to="/login">
                 <button className="btn rounded-none w-[130px] hover:text-[#00FFE1]">
                   L o g i n
