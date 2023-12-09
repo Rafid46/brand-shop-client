@@ -23,19 +23,16 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://brand-shop-server-sandy-five.vercel.app/product/${_id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "content-type": "application/json",
-            },
-          }
-        )
+        fetch(`http://localhost:5000/product/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            setProducts(products.filter((item) => item._id !== _id));
+            setProducts(products.filter((item) => item.id !== _id));
           });
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }

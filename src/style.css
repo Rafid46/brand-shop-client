@@ -1,0 +1,93 @@
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pop-out {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@mixin circle($size) {
+  display: inline-block;
+  border-radius: 50%;
+  @if $size == small {
+    width: 75px;
+    height: 75px;
+    font-size: 32px;
+    line-height: 75px;
+  } @else if $size == tiny {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+  }
+}
+
+.speed-dial {
+  text-align: center;
+  display: inline-block;
+
+  a {
+    color: #fafafa;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .toggle {
+    @include circle(small);
+    margin: 8px 0;
+  }
+
+  &:hover .dials a {
+    animation: pop-in 0.3s ease both;
+  }
+
+  .dials {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      @include circle(tiny);
+      margin: 8px 0;
+      transform: scale(0);
+      animation: pop-out 0.3s ease both;
+    }
+
+    a.pop-in {
+      animation: pop-in 0.3s ease both;
+    }
+
+    /* // Add incremental delays so that the buttons pop in order, supports up to 6 links */
+    @for $i from 0 through 6 {
+      li:nth-child(#{$i}) a {
+        animation-delay: $i * 0.1s;
+      }
+    }
+  }
+}
+
+.bg-share {
+  background-color: #15b897;
+}
+
+.bg-twitter {
+  background-color: #2daae2;
+}
+
+.bg-facebook {
+  background-color: #3c5b9b;
+}
+
+.bg-google-plus {
+  background-color: #f73e29;
+}

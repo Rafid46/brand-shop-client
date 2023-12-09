@@ -27,7 +27,7 @@ const UpdateProduct = () => {
     };
     console.log(updateProducts);
     fetch(
-      `https://brand-shop-server-sandy-five.vercel.app
+      `http://localhost:5000
 /updatedProduct/${_id}`,
       {
         method: "PUT",

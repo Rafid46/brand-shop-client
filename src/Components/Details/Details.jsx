@@ -14,7 +14,7 @@ const Details = () => {
     const mainCart = { ...data };
     delete mainCart._id;
     // const product = { data };
-    fetch("https://brand-shop-server-sandy-five.vercel.app/product", {
+    fetch("http://localhost:5000/product", {
       method: "POST",
       headers: {
         "content-type": "application/json",

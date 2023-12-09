@@ -1,12 +1,10 @@
+/* eslint-disable react/no-unknown-property */
 import { useLoaderData } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 import Banner from "./Components/Homepage/Banner";
 import BrandSection from "./Components/Homepage/BrandSection";
 import banner2 from "./assets//12983062_5109267.jpg";
-import banner3 from "./assets/banner.jpg";
-import banner4 from "./assets/2103881_P6YUM70.jpg";
-import banner5 from "./assets/isolated-phone-grey-background.jpg";
-import banner6 from "./assets/modern-smartphone-with-simple-environment.jpg";
+import { motion } from "framer-motion";
 function Home() {
   const brands = useLoaderData();
   return (
@@ -22,16 +20,22 @@ function Home() {
           <Banner></Banner>
         </div>
       </div>
-      <div
-        style={{ backgroundImage: `url(${banner3})` }}
-        className="grid grid-cols-1 lg:grid-cols-3 bg-full bg-fixed bg-center"
+      <motion.div
+        className="grid grid-cols-1 lg:grid-cols-3 gap-4  bg-full bg-fixed bg-center"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.5,
+          delay: 1,
+        }}
+        // style={{ backgroundImage: `url(${banner3})` }}
       >
         {brands.map((brandss) => (
           <BrandSection key={brandss._id} brandss={brandss}></BrandSection>
         ))}
-      </div>
+      </motion.div>
       {/* extra section */}
-      <section className="mb-30">
+      {/* <section className="mb-30">
         <div className="flex flex-col lg:flex-row justify-between w-50 h-96 mx-auto">
           <div className="carousel-item">
             <img className="w-[500px]" src={banner4} />
@@ -43,7 +47,7 @@ function Home() {
             <img className="w-[540px]" src={banner6} />
           </div>
         </div>
-      </section>
+      </section> */}
       <hr className="border-1 max-w-screen-lg mx-auto border-black lg:mt-10 lg:mb-10" />
       {/* extra section 2 */}
       <section className="">
@@ -83,6 +87,7 @@ function Home() {
           </nav>
         </footer>
       </footer>
+      <div></div>
     </>
   );
 }

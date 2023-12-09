@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -6,6 +7,7 @@ import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import swal from "sweetalert";
 import NavBar from "../NavBar";
+import axios from "axios";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -18,9 +20,18 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(result.user);
-        navigate(location.state ? location?.state : "/");
-        swal("Hello there", "Login successful", "success");
-        setMainUser(user);
+        axios
+          .post(
+            "http://localhost:5000/jwt",
+            { email: user.email },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data);
+            navigate(location.state ? location?.state : "/");
+            swal("Hello there", "Login successful", "success");
+            setMainUser(user);
+          });
       })
       .catch((error) => {
         console.error(error);
@@ -34,9 +45,17 @@ const Login = () => {
     console.log(email, password);
     signInUser(email, password)
       .then((result) => {
-        console.log(result);
-        navigate(location.state ? location?.state : "/");
-        return swal("Hello there", "Login successful", "success");
+        // console.log(result);
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = { email };
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+          });
+        // navigate(location.state ? location?.state : "/");
+        // return swal("Hello there", "Login successful", "success");
       })
       .catch((error) => {
         console.log(error);

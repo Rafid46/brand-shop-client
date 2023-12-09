@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -12,6 +13,9 @@ import Login from "./Components/User/Login";
 import SignUp from "./Components/User/SignUp";
 import AuthProviders from "./Providers/AuthProviders";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Naming from "./Components/Naming";
+import { ThemeProvider } from "@material-tailwind/react";
+import Material from "./Material";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,7 +42,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) =>
-      fetch(`https://brand-shop-server-sandy-five.vercel.app
+      fetch(`http://localhost:5000
 /product/${params.id}`),
   },
   {
@@ -49,7 +53,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) =>
-      fetch(`https://brand-shop-server-sandy-five.vercel.app
+      fetch(`http://localhost:5000
 /product/${params.id}`),
   },
   {
@@ -59,8 +63,7 @@ const router = createBrowserRouter([
         <MyCart></MyCart>
       </PrivateRoute>
     ),
-    loader: () =>
-      fetch("https://brand-shop-server-sandy-five.vercel.app/myCart"),
+    loader: () => fetch("http://localhost:5000/myCart"),
   },
   {
     path: "/login",
@@ -69,6 +72,14 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <SignUp></SignUp>,
+  },
+  {
+    path: "/naming",
+    element: <Naming></Naming>,
+  },
+  {
+    path: "/material",
+    element: <Material></Material>,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
